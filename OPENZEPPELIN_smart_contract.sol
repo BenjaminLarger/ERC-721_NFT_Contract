@@ -18,10 +18,15 @@ contract OpenZeppelinNFT is ERC721, Ownable {
         // Setting the initial owner to the deployer's address
     }
 
-    function mint() external {
+    function mint() external payable {
         require(tokenSupply < MAX_SUPPLY, "max supply reached");
         _mint(msg.sender, tokenSupply);
         tokenSupply++;
+    }
+
+    function _baseURI() internal pure override returns (string memory)
+    {
+        return ("ipfs://QmeCZpEPKT2HVey7bYWj4BookraE3cu85phhQX1ZBiZzHC/");
     }
 
     function viewBalance() external view returns (uint256) {
